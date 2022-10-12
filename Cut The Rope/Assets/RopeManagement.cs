@@ -8,6 +8,7 @@ public class RopeManagement : MonoBehaviour
     public Ball _ball;
     public int numberofConnections = 5;
     public GameObject[] connectionPool;
+    public string hingeName;
     void Start()
     {
         RopeCreate();
@@ -32,7 +33,7 @@ public class RopeManagement : MonoBehaviour
             }
             else
             {
-                _ball.LastChain(connectionPool[i].GetComponent<Rigidbody2D>());
+                _ball.LastChain(connectionPool[i].GetComponent<Rigidbody2D>(),hingeName);
             }
         }
     }

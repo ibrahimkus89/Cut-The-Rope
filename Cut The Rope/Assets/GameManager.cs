@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-   
+    public Ball _Ball;
     void Update()
     {
         if (Input.GetMouseButton(0))
@@ -15,11 +15,18 @@ public class GameManager : MonoBehaviour
             {
                 if (hit.collider.CompareTag("Center1"))
                 {
-                    Destroy(hit.collider.gameObject);
+                    //Destroy(hit.collider.gameObject);
+                    hit.collider.gameObject.SetActive(false);
+
+                    _Ball.HingeControl["Center1"].enabled = false;
                 }
                else if (hit.collider.CompareTag("Center2"))
                 {
-                    Destroy(hit.collider.gameObject);
+                    //Destroy(hit.collider.gameObject);
+
+                    hit.collider.gameObject.SetActive(false);
+
+                    _Ball.HingeControl["Center2"].enabled = false;
                 }
             }
 
