@@ -451,7 +451,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cc5a1146a776164b8ed309f5978ebcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ChainDistance: 0.2
 --- !u!50 &162322269
 Rigidbody2D:
   serializedVersion: 4
@@ -549,7 +548,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 162322267}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -1.55, y: 1.76, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3961,6 +3960,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Ball: {fileID: 162322268}
+  Rope_Centers:
+  - {fileID: 350539939}
+  - {fileID: 1745344671}
 --- !u!4 &2092078235
 Transform:
   m_ObjectHideFlags: 0

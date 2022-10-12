@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public Ball _Ball;
+    [SerializeField] private Ball _Ball;
+
+    [SerializeField] private GameObject[] Rope_Centers;
     void Update()
     {
         if (Input.GetMouseButton(0))
@@ -18,7 +20,18 @@ public class GameManager : MonoBehaviour
                     //Destroy(hit.collider.gameObject);
                     hit.collider.gameObject.SetActive(false);
 
-                    _Ball.HingeControl["Center1"].enabled = false;
+                    //_Ball.HingeControl["Center1"].enabled = false;
+
+                    foreach (var item in Rope_Centers)
+                    {
+                        if (item.GetComponent<RopeManagement>().hingeName =="Center1")
+                        {
+                            foreach (var item2 in item.GetComponent<RopeManagement>().connectionPool)
+                            {
+                                item2.SetActive(false);
+                            }
+                        }
+                    }
                 }
                else if (hit.collider.CompareTag("Center2"))
                 {
@@ -26,7 +39,18 @@ public class GameManager : MonoBehaviour
 
                     hit.collider.gameObject.SetActive(false);
 
-                    _Ball.HingeControl["Center2"].enabled = false;
+                    // _Ball.HingeControl["Center2"].enabled = false;
+
+                    foreach (var item in Rope_Centers)
+                    {
+                        if (item.GetComponent<RopeManagement>().hingeName == "Center2")
+                        {
+                            foreach (var item2 in item.GetComponent<RopeManagement>().connectionPool)
+                            {
+                                item2.SetActive(false);
+                            }
+                        }
+                    }
                 }
             }
 

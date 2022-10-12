@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class RopeManagement : MonoBehaviour
 {
-    public Rigidbody2D first_hook;
-    public Ball _ball;
-    public int numberofConnections = 5;
-    public GameObject[] connectionPool;
+    [SerializeField] private Rigidbody2D first_hook;
+    [SerializeField] private Ball _ball;
+    [SerializeField] private int numberofConnections = 5;
+     public GameObject[] connectionPool;
     public string hingeName;
     void Start()
     {
