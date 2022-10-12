@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private Ball _Ball;
+    //[SerializeField] private Ball _Ball;
 
     [SerializeField] private GameObject[] Rope_Centers;
     void Update()
@@ -17,44 +17,46 @@ public class GameManager : MonoBehaviour
             {
                 if (hit.collider.CompareTag("Center1"))
                 {
-                    //Destroy(hit.collider.gameObject);
-                    hit.collider.gameObject.SetActive(false);
+                    ChainTechProcess(hit, "Center1");
 
-                    //_Ball.HingeControl["Center1"].enabled = false;
-
-                    foreach (var item in Rope_Centers)
-                    {
-                        if (item.GetComponent<RopeManagement>().hingeName =="Center1")
-                        {
-                            foreach (var item2 in item.GetComponent<RopeManagement>().connectionPool)
-                            {
-                                item2.SetActive(false);
-                            }
-                        }
-                    }
                 }
-               else if (hit.collider.CompareTag("Center2"))
+                else if (hit.collider.CompareTag("Center2"))
                 {
-                    //Destroy(hit.collider.gameObject);
+                    ChainTechProcess(hit, "Center2");
 
-                    hit.collider.gameObject.SetActive(false);
-
-                    // _Ball.HingeControl["Center2"].enabled = false;
-
-                    foreach (var item in Rope_Centers)
-                    {
-                        if (item.GetComponent<RopeManagement>().hingeName == "Center2")
-                        {
-                            foreach (var item2 in item.GetComponent<RopeManagement>().connectionPool)
-                            {
-                                item2.SetActive(false);
-                            }
-                        }
-                    }
                 }
+
+                else if (hit.collider.CompareTag("Center3"))
+                {
+                    ChainTechProcess(hit, "Center3");
+
+                }
+
+                else if (hit.collider.CompareTag("Center4"))
+                {                  
+                    ChainTechProcess(hit, "Center4");
+
+               }
             }
 
             
+        }
+    }
+
+
+
+    void ChainTechProcess(RaycastHit2D hit,string HingeName)
+    {
+        hit.collider.gameObject.SetActive(false);     
+        foreach (var item in Rope_Centers)
+        {
+            if (item.GetComponent<RopeManagement>().hingeName == HingeName)
+            {
+                foreach (var item2 in item.GetComponent<RopeManagement>().connectionPool)
+                {
+                    item2.SetActive(false);
+                }
+            }
         }
     }
 }
