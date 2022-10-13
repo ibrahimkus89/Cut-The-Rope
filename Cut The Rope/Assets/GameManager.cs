@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using TMPro;
+using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     //[SerializeField] private Ball _Ball;
@@ -9,15 +10,16 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject[] Rope_Centers;
     [SerializeField] private int totalNumberOfBalls;
     [SerializeField] private int fallTheObject;
+    
 
 
     void Update()
     {
         if (Input.GetMouseButton(0))
         {
-            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition),Vector2.zero);
+            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
 
-            if (hit.collider!=null)
+            if (hit.collider != null)
             {
                 if (hit.collider.CompareTag("Center1"))
                 {
@@ -37,21 +39,21 @@ public class GameManager : MonoBehaviour
                 }
 
                 else if (hit.collider.CompareTag("Center4"))
-                {                  
+                {
                     ChainTechProcess(hit, "Center4");
 
-               }
+                }
             }
 
-            
+
         }
     }
 
 
 
-    void ChainTechProcess(RaycastHit2D hit,string HingeName)
+    void ChainTechProcess(RaycastHit2D hit, string HingeName)
     {
-        hit.collider.gameObject.SetActive(false);     
+        hit.collider.gameObject.SetActive(false);
         foreach (var item in Rope_Centers)
         {
             if (item.GetComponent<RopeManagement>().hingeName == HingeName)
@@ -68,14 +70,14 @@ public class GameManager : MonoBehaviour
     public void BallFall()
     {
         totalNumberOfBalls--;
-        if (totalNumberOfBalls ==0)
+        if (totalNumberOfBalls == 0)
         {
-            if (fallTheObject>0)
+            if (fallTheObject > 0)
             {
                 Debug.Log("Lost");
 
             }
-            else if (fallTheObject ==0)
+            else if (fallTheObject == 0)
             {
                 Debug.Log("Win");
 
@@ -83,7 +85,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            if (fallTheObject ==0)
+            if (fallTheObject == 0)
             {
                 Debug.Log("Win");
 
@@ -96,15 +98,19 @@ public class GameManager : MonoBehaviour
     {
         fallTheObject--;
 
-        if (totalNumberOfBalls == 0 && fallTheObject ==0)
+        if (totalNumberOfBalls == 0 && fallTheObject == 0)
         {
-                Debug.Log("Win");
+            Debug.Log("Win");
         }
 
-       else if (totalNumberOfBalls == 0 && fallTheObject > 0)
+        else if (totalNumberOfBalls == 0 && fallTheObject > 0)
         {
             Debug.Log("Lost");
 
         }
     }
-}
+
+   
+
+    }
+
