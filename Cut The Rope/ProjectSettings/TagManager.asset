@@ -8,6 +8,9 @@ TagManager:
   - Center2
   - Center3
   - Center4
+  - FallMessenger
+  - TargetObject
+  - Ball
   layers:
   - Default
   - TransparentFX

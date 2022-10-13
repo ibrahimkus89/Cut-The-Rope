@@ -7,6 +7,10 @@ public class GameManager : MonoBehaviour
     //[SerializeField] private Ball _Ball;
 
     [SerializeField] private GameObject[] Rope_Centers;
+    [SerializeField] private int totalNumberOfBalls;
+    [SerializeField] private int fallTheObject;
+
+
     void Update()
     {
         if (Input.GetMouseButton(0))
@@ -57,6 +61,50 @@ public class GameManager : MonoBehaviour
                     item2.SetActive(false);
                 }
             }
+        }
+    }
+
+
+    public void BallFall()
+    {
+        totalNumberOfBalls--;
+        if (totalNumberOfBalls ==0)
+        {
+            if (fallTheObject>0)
+            {
+                Debug.Log("Lost");
+
+            }
+            else if (fallTheObject ==0)
+            {
+                Debug.Log("Win");
+
+            }
+        }
+        else
+        {
+            if (fallTheObject ==0)
+            {
+                Debug.Log("Win");
+
+            }
+        }
+
+    }
+
+    public void TargetObjectFall()
+    {
+        fallTheObject--;
+
+        if (totalNumberOfBalls == 0 && fallTheObject ==0)
+        {
+                Debug.Log("Win");
+        }
+
+       else if (totalNumberOfBalls == 0 && fallTheObject > 0)
+        {
+            Debug.Log("Lost");
+
         }
     }
 }
