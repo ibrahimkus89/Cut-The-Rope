@@ -5,18 +5,22 @@ using TMPro;
 using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
-    //[SerializeField] private Ball _Ball;
+   
 
     [SerializeField] private GameObject[] Rope_Centers;
     [SerializeField] private int totalNumberOfBalls;
     [SerializeField] private int fallTheObject;
-    
+    [SerializeField] private AudioSource[] Sounds;
+    [SerializeField] private ParticleSystem WinEffect;
+    [SerializeField] private ParticleSystem CutEffect;
+
 
 
     void Update()
     {
         if (Input.GetMouseButton(0))
         {
+            Sounds[0].Play();
             RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
 
             if (hit.collider != null)
@@ -54,6 +58,8 @@ public class GameManager : MonoBehaviour
     void ChainTechProcess(RaycastHit2D hit, string HingeName)
     {
         hit.collider.gameObject.SetActive(false);
+        CutEffect.transform.position = hit.collider.gameObject.transform.position;
+        CutEffect.Play();
         foreach (var item in Rope_Centers)
         {
             if (item.GetComponent<RopeManagement>().hingeName == HingeName)
@@ -74,12 +80,12 @@ public class GameManager : MonoBehaviour
         {
             if (fallTheObject > 0)
             {
-                Debug.Log("Lost");
+                Lost();
 
             }
             else if (fallTheObject == 0)
             {
-                Debug.Log("Win");
+                Win();
 
             }
         }
@@ -87,7 +93,7 @@ public class GameManager : MonoBehaviour
         {
             if (fallTheObject == 0)
             {
-                Debug.Log("Win");
+                Win();
 
             }
         }
@@ -100,17 +106,37 @@ public class GameManager : MonoBehaviour
 
         if (totalNumberOfBalls == 0 && fallTheObject == 0)
         {
-            Debug.Log("Win");
+            Win();
         }
 
         else if (totalNumberOfBalls == 0 && fallTheObject > 0)
         {
-            Debug.Log("Lost");
+            Lost();
 
         }
     }
 
-   
+    void Win()
+    {
+        Debug.Log("Win");
+        WinEffect.Play();
+       
+        Sounds[2].Play();
+       
+        Time.timeScale = 0;
+    }
+
+    void Lost()
+    {
+        Debug.Log("Lost");       
+       
+        Sounds[1].Play();
+        
+        Time.timeScale = 0;
 
     }
+
+
+
+}
 
